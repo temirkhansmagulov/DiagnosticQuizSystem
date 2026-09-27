@@ -1,0 +1,171 @@
+{
+  "subject": "probability",
+  "questions": [
+    {
+      "id": "pr-classical-001",
+      "title": "Drawing a marble",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "pr-classical": 1, "sat-ratios": 0.3 },
+      "text": "A bag contains {{r}} red, {{b}} blue and {{g}} green marbles. One marble is drawn at random. What is the probability that it is red?",
+      "variables": { "r": { "min": 2, "max": 9 }, "b": { "min": 2, "max": 9 }, "g": { "min": 1, "max": 9 } },
+      "answer": "r / (r + b + g)",
+      "tolerance": { "abs": 0.001 },
+      "inputHint": "A fraction such as 3/7 or a decimal rounded to 3 places.",
+      "answerDisplay": "${{answer|frac}}$",
+      "solution": "Favourable / total $= \\frac{ {{r}} }{ {{r+b+g}} } = {{answer|frac}}$"
+    },
+    {
+      "id": "pr-classical-002",
+      "title": "Sum of two dice",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "pr-classical": 1 },
+      "text": "Two fair six-sided dice are rolled. What is the probability that the sum is {{s}}?",
+      "variables": { "s": { "min": 2, "max": 12 } },
+      "answer": "(6 - abs(s - 7)) / 36",
+      "tolerance": { "abs": 0.001 },
+      "inputHint": "A fraction such as 5/36 or a decimal rounded to 3 places.",
+      "answerDisplay": "${{answer|frac}}$",
+      "solution": "There are $36$ equally likely outcomes and ${{6 - abs(s-7)}}$ of them sum to ${{s}}$."
+    },
+    {
+      "id": "pr-complement-001",
+      "title": "At least one six",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "pr-complement": 1, "pr-independence": 0.4 },
+      "text": "A fair die is rolled {{n}} times. What is the probability of getting at least one six?",
+      "variables": { "n": { "min": 2, "max": 6 } },
+      "answer": "1 - (5/6)^n",
+      "tolerance": { "abs": 0.001 },
+      "inputHint": "Round to 3 decimals, or enter an expression like 1-(5/6)^3.",
+      "solution": "$P(\\text{at least one}) = 1 - P(\\text{no six}) = 1 - (5/6)^{ {{n}} } \\approx {{answer|4}}$"
+    },
+    {
+      "id": "pr-complement-002",
+      "title": "Complement of an event",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "pr-complement": 1 },
+      "text": "The probability that it rains tomorrow is ${{p}}$. What is the probability that it does not rain?",
+      "variables": { "p": { "min": 0.05, "max": 0.95, "step": 0.05, "exclude": [0.5] } },
+      "answer": "1 - p",
+      "distractors": ["p", "p/2", "1 - p/2"],
+      "optionTemplate": "${{value|3}}$"
+    },
+    {
+      "id": "pr-independence-001",
+      "title": "Union of independent events",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "pr-independence": 1 },
+      "text": "Events $A$ and $B$ are independent with $P(A) = {{p}}$ and $P(B) = {{q}}$. What is $P(A \\cup B)$?",
+      "variables": { "p": { "min": 0.1, "max": 0.9, "step": 0.1 }, "q": { "min": 0.1, "max": 0.9, "step": 0.1 } },
+      "constraints": ["p + q > 1 || p + q < 1"],
+      "answer": "p + q - p*q",
+      "distractors": ["p*q", "min(p + q, 1)", "1 - p*q"],
+      "optionTemplate": "${{value|3}}$",
+      "solution": "$P(A\\cup B) = P(A) + P(B) - P(A)P(B) = {{p}} + {{q}} - {{p*q}} = {{answer}}$"
+    },
+    {
+      "id": "pr-conditional-001",
+      "title": "Two-language students",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "pr-conditional-prob": 1 },
+      "text": "In a school, {{fr}} students take French, and {{both}} of those also take Spanish. A French student is chosen at random. What is the probability that they also take Spanish?",
+      "variables": { "fr": { "min": 20, "max": 60 }, "both": { "min": 4, "max": 18 } },
+      "answer": "both / fr",
+      "tolerance": { "abs": 0.001 },
+      "inputHint": "A fraction or a decimal rounded to 3 places.",
+      "answerDisplay": "${{answer|frac}}$",
+      "solution": "$P(S\\mid F) = \\frac{P(S\\cap F)}{P(F)} = \\frac{ {{both}} }{ {{fr}} }$"
+    },
+    {
+      "id": "pr-bayes-001",
+      "title": "Medical test (Bayes)",
+      "type": "numeric",
+      "difficulty": 4,
+      "subtopics": { "pr-bayes": 1, "pr-conditional-prob": 0.5 },
+      "text": "A disease affects {{p*100}}% of a population. A test detects the disease in {{s*100}}% of sick people, and gives a false positive for {{f*100}}% of healthy people. A random person tests positive. What is the probability that they have the disease?",
+      "variables": {
+        "p": { "min": 0.01, "max": 0.05, "step": 0.01 },
+        "s": { "min": 0.90, "max": 0.99, "step": 0.01 },
+        "f": { "min": 0.02, "max": 0.10, "step": 0.01 }
+      },
+      "answer": "p*s / (p*s + (1 - p)*f)",
+      "tolerance": { "abs": 0.005 },
+      "inputHint": "Round to 3 decimals.",
+      "solution": "$P(D\\mid +) = \\frac{ {{p}}\\cdot{{s}} }{ {{p}}\\cdot{{s}} + {{1-p}}\\cdot{{f}} } \\approx {{answer|3}}$"
+    },
+    {
+      "id": "pr-ev-001",
+      "title": "Expected value of a dice game",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "pr-expected-value": 1 },
+      "text": "You roll a fair die. If it shows 6 you win {{w}} points; otherwise you lose {{l}} points. What is the expected number of points per roll?",
+      "variables": { "w": { "min": 5, "max": 30 }, "l": { "min": 1, "max": 5 } },
+      "answer": "(w - 5*l) / 6",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to 2 decimals (can be negative).",
+      "solution": "$E = \\tfrac16({{w}}) + \\tfrac56(-{{l}}) \\approx {{answer|2}}$"
+    },
+    {
+      "id": "pr-ev-002",
+      "title": "Expected value from a table",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "pr-expected-value": 1 },
+      "text": "A random variable $X$ takes the values ${{x1}}, {{x2}}, {{x3}}$ with probabilities ${{p1}}, {{p2}}, {{p3}}$ respectively. Find $E[X]$.",
+      "variables": {
+        "x1": { "min": -5, "max": 0 }, "x2": { "min": 1, "max": 5 }, "x3": { "min": 6, "max": 12 },
+        "p1": { "min": 0.1, "max": 0.5, "step": 0.1 }, "p2": { "min": 0.1, "max": 0.4, "step": 0.1 }
+      },
+      "derived": { "p3": "1 - p1 - p2" },
+      "constraints": ["p3 >= 0.1"],
+      "answer": "x1*p1 + x2*p2 + x3*p3",
+      "tolerance": { "abs": 0.01 },
+      "solution": "$E[X] = \\sum x\\,p(x) = {{answer}}$"
+    },
+    {
+      "id": "pr-variance-001",
+      "title": "Variance of a two-valued variable",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "pr-variance": 1, "pr-expected-value": 0.5 },
+      "text": "$X = {{a}}$ with probability ${{p}}$ and $X = 0$ otherwise. Find $\\operatorname{Var}(X)$.",
+      "variables": { "a": { "min": 2, "max": 10 }, "p": { "min": 0.1, "max": 0.9, "step": 0.1 } },
+      "answer": "a^2 * p * (1 - p)",
+      "tolerance": { "abs": 0.01 },
+      "solution": "$E[X] = {{a*p}}$, $E[X^2] = {{a^2*p}}$, so $\\operatorname{Var}(X) = E[X^2] - E[X]^2 = {{answer}}$."
+    },
+    {
+      "id": "pr-binomial-001",
+      "title": "Binomial probability",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "pr-binomial": 1, "dm-combinations": 0.4, "pr-independence": 0.3 },
+      "text": "A biased coin lands heads with probability ${{p}}$. It is flipped {{n}} times. What is the probability of exactly {{k}} heads?",
+      "variables": { "n": { "min": 4, "max": 8 }, "k": { "min": 1, "max": 6 }, "p": { "choices": [0.2, 0.25, 0.3, 0.4, 0.6, 0.7] } },
+      "constraints": ["k < n"],
+      "answer": "C(n, k) * p^k * (1 - p)^(n - k)",
+      "tolerance": { "abs": 0.001 },
+      "inputHint": "Round to 3 decimals, or enter an expression like C(5,2)*0.3^2*0.7^3.",
+      "solution": "$\\binom{ {{n}} }{ {{k}} } ({{p}})^{ {{k}} } ({{1-p}})^{ {{n-k}} } \\approx {{answer|4}}$"
+    },
+    {
+      "id": "pr-binomial-002",
+      "title": "Mean of a binomial variable",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "pr-binomial": 1, "pr-expected-value": 0.5 },
+      "text": "$X \\sim \\text{Binomial}(n = {{n}},\\ p = {{p}})$. What is $E[X]$?",
+      "variables": { "n": { "min": 10, "max": 60, "step": 10 }, "p": { "choices": [0.1, 0.2, 0.3, 0.4, 0.6, 0.7] } },
+      "answer": "n*p",
+      "distractors": ["n*p*(1 - p)", "n*(1 - p)", "sqrt(n*p*(1 - p))"],
+      "optionTemplate": "${{value|2}}$"
+    }
+  ]
+}

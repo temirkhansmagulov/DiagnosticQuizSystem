@@ -1,0 +1,130 @@
+{
+  "subject": "differential-equations",
+  "questions": [
+    {
+      "id": "de-growth-001",
+      "title": "Doubling population",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "de-exponential-growth": 1 },
+      "text": "A bacteria culture grows according to $P'(t) = kP(t)$. It starts with {{P0}} cells and doubles every {{T}} hours. How many cells are there after {{t}} hours?",
+      "variables": { "P0": { "min": 100, "max": 900, "step": 100 }, "T": { "min": 2, "max": 6 }, "t": { "min": 4, "max": 18 } },
+      "answer": "P0 * 2^(t / T)",
+      "tolerance": { "rel": 0.002 },
+      "inputHint": "Round to the nearest whole number.",
+      "displayDecimals": 1,
+      "solution": "$P(t) = {{P0}}\\cdot 2^{t/{{T}}}$, so $P({{t}}) \\approx {{answer|1}}$."
+    },
+    {
+      "id": "de-growth-002",
+      "title": "Solving y' = ky",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "de-exponential-growth": 1, "de-separable": 0.3 },
+      "text": "Solve $y' = {{k}}y$ with $y(0) = {{y0}}$ and give $y({{t}})$.",
+      "variables": { "k": { "choices": [-0.5, -0.3, -0.2, 0.1, 0.2, 0.3, 0.5] }, "y0": { "min": 2, "max": 20 }, "t": { "min": 1, "max": 5 } },
+      "answer": "y0 * exp(k*t)",
+      "tolerance": { "rel": 0.002 },
+      "inputHint": "Round to 2 decimals.",
+      "solution": "$y(t) = {{y0}}e^{ {{k}}t }$, so $y({{t}}) = {{y0}}e^{ {{k*t}} } \\approx {{answer|3}}$."
+    },
+    {
+      "id": "de-separable-001",
+      "title": "Separable equation y' = kxy",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "de-separable": 1, "ca-definite-integral": 0.3 },
+      "text": "Solve $\\dfrac{dy}{dx} = {{k|coef}}xy$ with $y(0) = {{y0}}$. What is $y({{x1}})$?",
+      "variables": { "k": { "choices": [-1, -0.5, 0.5, 1] }, "y0": { "min": 1, "max": 9 }, "x1": { "min": 1, "max": 2 } },
+      "answer": "y0 * exp(k * x1^2 / 2)",
+      "tolerance": { "rel": 0.002 },
+      "inputHint": "Round to 3 decimals.",
+      "solution": "$\\int \\frac{dy}{y} = \\int {{k|coef}}x\\,dx \\Rightarrow y = {{y0}}e^{ {{k/2}}x^2 }$; at $x = {{x1}}$: $\\approx {{answer|3}}$."
+    },
+    {
+      "id": "de-separable-002",
+      "title": "Separable equation y' = x/y",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "de-separable": 1 },
+      "text": "Solve $\\dfrac{dy}{dx} = \\dfrac{x}{y}$ with $y(0) = {{y0}}$ (take $y > 0$). What is $y({{x1}})$?",
+      "variables": { "y0": { "min": 1, "max": 8 }, "x1": { "min": 1, "max": 8 } },
+      "answer": "sqrt(x1^2 + y0^2)",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to 2 decimals, or enter sqrt(...).",
+      "solution": "$y\\,dy = x\\,dx \\Rightarrow y^2 = x^2 + {{y0^2}}$, so $y({{x1}}) = \\sqrt{ {{x1^2+y0^2}} } \\approx {{answer|3}}$."
+    },
+    {
+      "id": "de-linear-001",
+      "title": "Long-run value of a linear ODE",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "de-linear-first-order": 1 },
+      "text": "Let $y' + {{a}}y = {{b}}$ with $y(0) = {{y0}}$. What value does $y(t)$ approach as $t \\to \\infty$?",
+      "variables": { "a": { "min": 1, "max": 6 }, "b": { "min": -20, "max": 30, "exclude": [0] }, "y0": { "min": -5, "max": 5 } },
+      "answer": "b / a",
+      "tolerance": { "abs": 0.01 },
+      "answerDisplay": "${{answer|frac}}$",
+      "solution": "$y = \\frac{ {{b}} }{ {{a}} } + \\left(y_0 - \\frac{ {{b}} }{ {{a}} }\\right)e^{-{{a}}t} \\to {{answer|frac}}$"
+    },
+    {
+      "id": "de-linear-002",
+      "title": "Integrating factor",
+      "type": "numeric",
+      "difficulty": 4,
+      "subtopics": { "de-linear-first-order": 1, "ca-product-rule": 0.3 },
+      "text": "Solve $y' + {{a}}y = {{b}}$ with $y(0) = {{y0}}$, and give $y({{t}})$.",
+      "variables": { "a": { "min": 1, "max": 4 }, "b": { "min": 2, "max": 12 }, "y0": { "min": -4, "max": 4 }, "t": { "choices": [0.5, 1, 1.5, 2] } },
+      "answer": "b/a + (y0 - b/a) * exp(-a*t)",
+      "tolerance": { "abs": 0.005 },
+      "inputHint": "Round to 3 decimals.",
+      "solution": "Integrating factor $e^{ {{a}}t }$ gives $y = \\tfrac{ {{b}} }{ {{a}} } + (y_0 - \\tfrac{ {{b}} }{ {{a}} })e^{-{{a}}t}$; $y({{t}}) \\approx {{answer|4}}$."
+    },
+    {
+      "id": "de-char-001",
+      "title": "General solution from the characteristic equation",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "de-char-equation": 1, "sat-quadratics": 0.4 },
+      "text": "Which is the general solution of $y'' {{p|signedcoef}}y' {{q|signed}}y = 0$?",
+      "variables": { "r1": { "min": -5, "max": 5, "exclude": [-1, 0, 1] }, "r2": { "min": -5, "max": 5, "exclude": [-1, 0, 1] } },
+      "derived": { "p": "-(r1 + r2)", "q": "r1*r2" },
+      "constraints": ["r1 < r2", "r1 != -r2"],
+      "choices": [
+        { "text": "$y = C_1 e^{{{r1}}x} + C_2 e^{{{r2}}x}$", "correct": true },
+        { "text": "$y = C_1 e^{{{-r1}}x} + C_2 e^{{{-r2}}x}$" },
+        { "text": "$y = C_1 \\cos({{r1}}x) + C_2 \\sin({{r2}}x)$" },
+        { "text": "$y = (C_1 + C_2 x)e^{{{r1}}x}$" }
+      ],
+      "solution": "Characteristic equation $r^2 {{p|signedcoef}}r {{q|signed}} = (r {{-r1|signed}})(r {{-r2|signed}}) = 0$ has roots ${{r1}}, {{r2}}$."
+    },
+    {
+      "id": "de-char-002",
+      "title": "Oscillation frequency (complex roots)",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "de-char-equation": 1, "sat-quadratics": 0.4 },
+      "text": "The general solution of $y'' {{b|signedcoef}}y' {{c|signed}}y = 0$ has the form $e^{\\alpha x}(C_1\\cos\\beta x + C_2\\sin\\beta x)$ with $\\beta > 0$. Find $\\beta$.",
+      "variables": { "alpha": { "min": -3, "max": 3, "exclude": [0] }, "beta": { "min": 1, "max": 5 } },
+      "derived": { "b": "-2*alpha", "c": "alpha^2 + beta^2" },
+      "answer": "beta",
+      "solution": "Roots of $r^2 {{b|signedcoef}}r {{c|signed}} = 0$ are $r = {{alpha}} \\pm {{beta}}i$, so $\\beta = {{beta}}$."
+    },
+    {
+      "id": "de-ivp-001",
+      "title": "Initial value problem, second order",
+      "type": "numeric",
+      "difficulty": 4,
+      "subtopics": { "de-ivp-second-order": 1, "de-char-equation": 0.5, "sat-systems": 0.3 },
+      "text": "The solution of $y'' {{p|signedcoef}}y' {{q|signed}}y = 0$, $y(0) = {{y0}}$, $y'(0) = {{dy0}}$ can be written $y = C_1 e^{{{r1}}x} + C_2 e^{{{r2}}x}$. Find $C_1$.",
+      "variables": {
+        "r1": { "min": -4, "max": 4, "exclude": [-1, 0, 1] }, "r2": { "min": -4, "max": 4, "exclude": [-1, 0, 1] },
+        "A": { "min": -5, "max": 5, "exclude": [0] }, "B": { "min": -5, "max": 5, "exclude": [0] }
+      },
+      "derived": { "p": "-(r1 + r2)", "q": "r1*r2", "y0": "A + B", "dy0": "r1*A + r2*B" },
+      "constraints": ["r1 != r2", "p != 0"],
+      "answer": "A",
+      "solution": "Solve $C_1 + C_2 = {{y0}}$, ${{r1}}C_1 {{r2|signedcoef}}C_2 = {{dy0}}$: $C_1 = {{A}}$, $C_2 = {{B}}$."
+    }
+  ]
+}

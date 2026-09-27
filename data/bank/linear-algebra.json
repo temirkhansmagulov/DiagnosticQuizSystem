@@ -1,0 +1,185 @@
+{
+  "subject": "linear-algebra",
+  "questions": [
+    {
+      "id": "la-dot-001",
+      "title": "Dot product of two 3-vectors",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "la-dot-product": 1 },
+      "text": "Compute $\\mathbf{u}\\cdot\\mathbf{v}$ for $\\mathbf{u} = ({{u1}}, {{u2}}, {{u3}})$ and $\\mathbf{v} = ({{v1}}, {{v2}}, {{v3}})$.",
+      "variables": {
+        "u1": { "min": -6, "max": 6 }, "u2": { "min": -6, "max": 6 }, "u3": { "min": -6, "max": 6 },
+        "v1": { "min": -6, "max": 6 }, "v2": { "min": -6, "max": 6 }, "v3": { "min": -6, "max": 6 }
+      },
+      "answer": "u1*v1 + u2*v2 + u3*v3",
+      "solution": "$\\mathbf{u}\\cdot\\mathbf{v} = ({{u1}})({{v1}}) + ({{u2}})({{v2}}) + ({{u3}})({{v3}}) = {{answer}}$"
+    },
+    {
+      "id": "la-dot-002",
+      "title": "Orthogonal vectors: find k",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "la-dot-product": 1, "sat-linear-equations": 0.3 },
+      "text": "For which value of $k$ are the vectors $({{a}}, k)$ and $({{b}}, {{c}})$ orthogonal?",
+      "variables": {
+        "a": { "min": -6, "max": 6, "exclude": [0] },
+        "b": { "min": -6, "max": 6, "exclude": [0] },
+        "c": { "min": -6, "max": 6, "exclude": [0] }
+      },
+      "constraints": ["(a*b) % c == 0"],
+      "answer": "-a*b/c",
+      "distractors": ["a*b/c", "-a*c/b", "-c/a"],
+      "optionTemplate": "$k = {{value|frac}}$",
+      "solution": "Orthogonal means the dot product is zero: $({{a}})({{b}}) + ({{c}})k = 0$, so $k = {{answer|frac}}$."
+    },
+    {
+      "id": "la-norm-001",
+      "title": "Length of a vector",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "la-vector-norm": 1, "la-dot-product": 0.3 },
+      "text": "Find the length $\\|\\mathbf{w}\\|$ of $\\mathbf{w} = ({{a}}, {{b}}, {{c}})$.",
+      "variables": { "a": { "min": -6, "max": 6 }, "b": { "min": -6, "max": 6 }, "c": { "min": 1, "max": 6 } },
+      "answer": "sqrt(a^2 + b^2 + c^2)",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to 2 decimals, or type an exact value such as sqrt(29).",
+      "solution": "$\\|\\mathbf{w}\\| = \\sqrt{ {{a^2}} + {{b^2}} + {{c^2}} } = \\sqrt{ {{a^2+b^2+c^2}} } \\approx {{answer|3}}$"
+    },
+    {
+      "id": "la-matrix-ops-001",
+      "title": "Entry of kA - B",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "la-matrix-ops": 1 },
+      "text": "Let $A = \\begin{pmatrix} {{a}} & {{b}} \\\\ {{c}} & {{d}} \\end{pmatrix}$ and $B = \\begin{pmatrix} {{e1}} & {{f1}} \\\\ {{g1}} & {{h1}} \\end{pmatrix}$. What is the entry in row 2, column 1 of ${{k}}A - B$?",
+      "variables": {
+        "a": { "min": -5, "max": 5 }, "b": { "min": -5, "max": 5 }, "c": { "min": -5, "max": 5 }, "d": { "min": -5, "max": 5 },
+        "e1": { "min": -5, "max": 5 }, "f1": { "min": -5, "max": 5 }, "g1": { "min": -5, "max": 5 }, "h1": { "min": -5, "max": 5 },
+        "k": { "min": 2, "max": 4 }
+      },
+      "answer": "k*c - g1",
+      "solution": "Entry (2,1) is ${{k}}\\cdot({{c}}) - ({{g1}}) = {{answer}}$."
+    },
+    {
+      "id": "la-matmul-001",
+      "title": "Entry of a matrix product",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "la-matrix-mult": 1, "la-dot-product": 0.3 },
+      "text": "Let $A = \\begin{pmatrix} {{a}} & {{b}} \\\\ {{c}} & {{d}} \\end{pmatrix}$ and $B = \\begin{pmatrix} {{p}} & {{q}} \\\\ {{r}} & {{s}} \\end{pmatrix}$. What is the entry in row 1, column 2 of $AB$?",
+      "variables": {
+        "a": { "min": -4, "max": 4 }, "b": { "min": -4, "max": 4 }, "c": { "min": -4, "max": 4 }, "d": { "min": -4, "max": 4 },
+        "p": { "min": -4, "max": 4 }, "q": { "min": -4, "max": 4 }, "r": { "min": -4, "max": 4 }, "s": { "min": -4, "max": 4 }
+      },
+      "answer": "a*q + b*s",
+      "solution": "Row 1 of $A$ dotted with column 2 of $B$: $({{a}})({{q}}) + ({{b}})({{s}}) = {{answer}}$."
+    },
+    {
+      "id": "la-matmul-002",
+      "title": "Size of a matrix product",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "la-matrix-mult": 1 },
+      "text": "$A$ is a ${{m}} \\times {{n}}$ matrix and $B$ is a ${{n}} \\times {{p}}$ matrix. What is the size of $AB$?",
+      "variables": { "m": { "min": 2, "max": 6 }, "n": { "min": 2, "max": 6 }, "p": { "min": 2, "max": 6 } },
+      "constraints": ["m != n", "n != p", "m != p"],
+      "choices": [
+        { "text": "${{m}} \\times {{p}}$", "correct": true },
+        { "text": "${{p}} \\times {{m}}$" },
+        { "text": "${{n}} \\times {{n}}$" },
+        { "text": "The product is undefined" }
+      ],
+      "solution": "Inner dimensions match (${{n}}$), and the result takes the outer dimensions: ${{m}} \\times {{p}}$."
+    },
+    {
+      "id": "la-det2-001",
+      "title": "2x2 determinant",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "la-det-2x2": 1 },
+      "text": "Compute $\\det \\begin{pmatrix} {{a}} & {{b}} \\\\ {{c}} & {{d}} \\end{pmatrix}$.",
+      "variables": { "a": { "min": -9, "max": 9 }, "b": { "min": -9, "max": 9 }, "c": { "min": -9, "max": 9 }, "d": { "min": -9, "max": 9 } },
+      "answer": "a*d - b*c",
+      "solution": "$ad - bc = ({{a}})({{d}}) - ({{b}})({{c}}) = {{answer}}$"
+    },
+    {
+      "id": "la-det2-002",
+      "title": "When is a 2x2 matrix singular?",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "la-det-2x2": 1, "sat-linear-equations": 0.3 },
+      "text": "For which value of $k$ is $\\begin{pmatrix} k & {{a}} \\\\ {{b}} & {{c}} \\end{pmatrix}$ not invertible?",
+      "variables": {
+        "a": { "min": -6, "max": 6, "exclude": [0] },
+        "b": { "min": -6, "max": 6, "exclude": [0] },
+        "c": { "min": -6, "max": 6, "exclude": [0] }
+      },
+      "constraints": ["(a*b) % c == 0"],
+      "answer": "a*b/c",
+      "distractors": ["-a*b/c", "a*c/b", "c - a*b"],
+      "optionTemplate": "$k = {{value|frac}}$",
+      "solution": "Singular means $\\det = {{c}}k - ({{a}})({{b}}) = 0$, so $k = {{answer|frac}}$."
+    },
+    {
+      "id": "la-det3-001",
+      "title": "3x3 determinant",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "la-det-3x3": 1, "la-det-2x2": 0.4 },
+      "text": "Compute $\\det \\begin{pmatrix} {{m11}} & {{m12}} & {{m13}} \\\\ {{m21}} & {{m22}} & {{m23}} \\\\ {{m31}} & {{m32}} & {{m33}} \\end{pmatrix}$.",
+      "variables": {
+        "m11": { "min": -3, "max": 3 }, "m12": { "min": -3, "max": 3 }, "m13": { "min": -3, "max": 3 },
+        "m21": { "min": -3, "max": 3 }, "m22": { "min": -3, "max": 3 }, "m23": { "min": -3, "max": 3 },
+        "m31": { "min": -3, "max": 3 }, "m32": { "min": -3, "max": 3 }, "m33": { "min": -3, "max": 3 }
+      },
+      "answer": "m11*(m22*m33 - m23*m32) - m12*(m21*m33 - m23*m31) + m13*(m21*m32 - m22*m31)",
+      "solution": "Cofactor expansion along row 1: ${{m11}}({{m22*m33 - m23*m32}}) - ({{m12}})({{m21*m33 - m23*m31}}) + ({{m13}})({{m21*m32 - m22*m31}}) = {{answer}}$"
+    },
+    {
+      "id": "la-cramer-001",
+      "title": "Cramer's rule for a 2x2 system",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "la-cramers-rule": 1, "la-det-2x2": 0.5, "sat-systems": 0.3 },
+      "text": "Use Cramer's rule to find $x$: $$\\begin{cases} {{a|coef}}x {{b|signedcoef}}y = {{r1}} \\\\ {{c|coef}}x {{d|signedcoef}}y = {{r2}} \\end{cases}$$",
+      "variables": {
+        "a": { "min": -5, "max": 5, "exclude": [0] }, "b": { "min": -5, "max": 5, "exclude": [0] },
+        "c": { "min": -5, "max": 5, "exclude": [0] }, "d": { "min": -5, "max": 5, "exclude": [0] },
+        "x0": { "min": -6, "max": 6 }, "y0": { "min": -6, "max": 6 }
+      },
+      "derived": { "r1": "a*x0 + b*y0", "r2": "c*x0 + d*y0", "D": "a*d - b*c" },
+      "constraints": ["D != 0"],
+      "answer": "x0",
+      "solution": "$D = {{D}}$, $D_x = ({{r1}})({{d}}) - ({{b}})({{r2}}) = {{r1*d - b*r2}}$, so $x = D_x / D = {{answer}}$."
+    },
+    {
+      "id": "la-eig-001",
+      "title": "Largest eigenvalue of a 2x2 matrix",
+      "type": "numeric",
+      "difficulty": 4,
+      "subtopics": { "la-eigenvalues": 1, "la-det-2x2": 0.4, "sat-quadratics": 0.4 },
+      "text": "Find the largest eigenvalue of $A = \\begin{pmatrix} {{a}} & {{b}} \\\\ {{c}} & {{d}} \\end{pmatrix}$.",
+      "variables": {
+        "l1": { "min": -5, "max": 5 }, "l2": { "min": -5, "max": 5 },
+        "a": { "min": -4, "max": 4 }, "b": { "choices": [1, -1, 2, -2, 3] }
+      },
+      "derived": { "d": "l1 + l2 - a", "c": "(a*d - l1*l2) / b" },
+      "constraints": ["l1 != l2", "c == round(c)", "abs(c) <= 12", "abs(d) <= 9"],
+      "answer": "max(l1, l2)",
+      "solution": "Characteristic polynomial: $\\lambda^2 - ({{a+d}})\\lambda + ({{a*d-b*c}}) = (\\lambda {{-l1|signed}})(\\lambda {{-l2|signed}})$. Largest root: ${{answer}}$."
+    },
+    {
+      "id": "la-eig-002",
+      "title": "Sum of eigenvalues",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "la-eigenvalues": 1 },
+      "text": "What is the sum of the eigenvalues of $\\begin{pmatrix} {{a}} & {{b}} \\\\ {{c}} & {{d}} \\end{pmatrix}$?",
+      "variables": { "a": { "min": -7, "max": 7 }, "b": { "min": -7, "max": 7 }, "c": { "min": -7, "max": 7 }, "d": { "min": -7, "max": 7 } },
+      "answer": "a + d",
+      "distractors": ["a*d - b*c", "b + c", "a - d"],
+      "solution": "The sum of the eigenvalues equals the trace: ${{a}} + ({{d}}) = {{answer}}$."
+    }
+  ]
+}

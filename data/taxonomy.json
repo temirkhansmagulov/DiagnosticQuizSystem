@@ -1,0 +1,207 @@
+{
+  "subjects": [
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra",
+      "topics": [
+        {
+          "id": "la-vectors", "name": "Vectors",
+          "subtopics": [
+            { "id": "la-dot-product", "name": "Dot product", "related": ["ag-distance-points"] },
+            { "id": "la-vector-norm", "name": "Vector norm", "prerequisites": ["la-dot-product"], "related": ["ag-distance-points"] }
+          ]
+        },
+        {
+          "id": "la-matrices", "name": "Matrices",
+          "subtopics": [
+            { "id": "la-matrix-ops", "name": "Matrix addition & scalar multiplication" },
+            { "id": "la-matrix-mult", "name": "Matrix multiplication", "prerequisites": ["la-matrix-ops", "la-dot-product"] }
+          ]
+        },
+        {
+          "id": "la-determinants", "name": "Determinants",
+          "subtopics": [
+            { "id": "la-det-2x2", "name": "2x2 determinants", "prerequisites": ["la-matrix-ops"] },
+            { "id": "la-det-3x3", "name": "3x3 determinants", "prerequisites": ["la-det-2x2"] }
+          ]
+        },
+        {
+          "id": "la-systems", "name": "Linear systems",
+          "subtopics": [
+            { "id": "la-cramers-rule", "name": "Cramer's rule", "prerequisites": ["la-det-2x2", "sat-systems"] }
+          ]
+        },
+        {
+          "id": "la-eigen", "name": "Eigenvalues",
+          "subtopics": [
+            { "id": "la-eigenvalues", "name": "Eigenvalues of 2x2 matrices", "prerequisites": ["la-det-2x2", "sat-quadratics"], "related": ["de-char-equation"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "probability",
+      "name": "Probability",
+      "topics": [
+        {
+          "id": "pr-basics", "name": "Basic probability",
+          "subtopics": [
+            { "id": "pr-classical", "name": "Equally likely outcomes", "prerequisites": ["sat-ratios"] },
+            { "id": "pr-complement", "name": "Complement rule", "prerequisites": ["pr-classical"] },
+            { "id": "pr-independence", "name": "Independent events", "prerequisites": ["pr-classical"] }
+          ]
+        },
+        {
+          "id": "pr-conditional", "name": "Conditional probability",
+          "subtopics": [
+            { "id": "pr-conditional-prob", "name": "Conditional probability", "prerequisites": ["pr-classical"] },
+            { "id": "pr-bayes", "name": "Bayes' theorem", "prerequisites": ["pr-conditional-prob"] }
+          ]
+        },
+        {
+          "id": "pr-random-variables", "name": "Random variables",
+          "subtopics": [
+            { "id": "pr-expected-value", "name": "Expected value", "prerequisites": ["pr-classical"] },
+            { "id": "pr-variance", "name": "Variance", "prerequisites": ["pr-expected-value"] },
+            { "id": "pr-binomial", "name": "Binomial distribution", "prerequisites": ["pr-independence", "dm-combinations"], "related": ["pr-expected-value"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus",
+      "topics": [
+        {
+          "id": "ca-limits", "name": "Limits",
+          "subtopics": [
+            { "id": "ca-limits-rational", "name": "Limits of rational functions", "prerequisites": ["sat-quadratics"] },
+            { "id": "ca-limits-infinity", "name": "Limits at infinity" }
+          ]
+        },
+        {
+          "id": "ca-derivatives", "name": "Derivatives",
+          "subtopics": [
+            { "id": "ca-power-rule", "name": "Power rule" },
+            { "id": "ca-product-rule", "name": "Product rule", "prerequisites": ["ca-power-rule"] },
+            { "id": "ca-chain-rule", "name": "Chain rule", "prerequisites": ["ca-power-rule"] },
+            { "id": "ca-tangent-line", "name": "Tangent lines", "prerequisites": ["ca-power-rule", "ag-line-equation"] }
+          ]
+        },
+        {
+          "id": "ca-applications", "name": "Applications of derivatives",
+          "subtopics": [
+            { "id": "ca-critical-points", "name": "Critical points & extrema", "prerequisites": ["ca-power-rule", "sat-quadratics"] }
+          ]
+        },
+        {
+          "id": "ca-integrals", "name": "Integrals",
+          "subtopics": [
+            { "id": "ca-definite-integral", "name": "Definite integrals of polynomials", "prerequisites": ["ca-power-rule"] },
+            { "id": "ca-u-substitution", "name": "u-substitution", "prerequisites": ["ca-chain-rule", "ca-definite-integral"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "differential-equations",
+      "name": "Differential Equations",
+      "topics": [
+        {
+          "id": "de-first-order", "name": "First-order equations",
+          "subtopics": [
+            { "id": "de-exponential-growth", "name": "Exponential growth & decay", "prerequisites": ["ca-chain-rule"] },
+            { "id": "de-separable", "name": "Separable equations", "prerequisites": ["ca-definite-integral"] },
+            { "id": "de-linear-first-order", "name": "Linear first-order (integrating factor)", "prerequisites": ["ca-product-rule", "ca-definite-integral"] }
+          ]
+        },
+        {
+          "id": "de-second-order", "name": "Second-order linear equations",
+          "subtopics": [
+            { "id": "de-char-equation", "name": "Characteristic equation", "prerequisites": ["sat-quadratics"] },
+            { "id": "de-ivp-second-order", "name": "Initial value problems", "prerequisites": ["de-char-equation", "sat-systems"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "analytic-geometry",
+      "name": "Analytic Geometry",
+      "topics": [
+        {
+          "id": "ag-lines", "name": "Lines",
+          "subtopics": [
+            { "id": "ag-slope", "name": "Slope", "prerequisites": ["sat-linear-equations"] },
+            { "id": "ag-line-equation", "name": "Equation of a line", "prerequisites": ["ag-slope"] },
+            { "id": "ag-distance-points", "name": "Distance between points", "prerequisites": ["sat-triangles"] },
+            { "id": "ag-distance-point-line", "name": "Distance from point to line", "prerequisites": ["ag-line-equation"] }
+          ]
+        },
+        {
+          "id": "ag-conics", "name": "Conic sections",
+          "subtopics": [
+            { "id": "ag-circle", "name": "Circles", "prerequisites": ["ag-distance-points"] },
+            { "id": "ag-parabola", "name": "Parabolas (vertex form)", "prerequisites": ["sat-quadratics"] },
+            { "id": "ag-ellipse", "name": "Ellipses", "prerequisites": ["ag-circle"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discrete-math",
+      "name": "Discrete Mathematics",
+      "topics": [
+        {
+          "id": "dm-combinatorics", "name": "Combinatorics",
+          "subtopics": [
+            { "id": "dm-permutations", "name": "Permutations" },
+            { "id": "dm-combinations", "name": "Combinations", "prerequisites": ["dm-permutations"] },
+            { "id": "dm-inclusion-exclusion", "name": "Inclusion–exclusion", "related": ["pr-complement"] }
+          ]
+        },
+        {
+          "id": "dm-number-theory", "name": "Number theory",
+          "subtopics": [
+            { "id": "dm-gcd", "name": "GCD & LCM" },
+            { "id": "dm-modular", "name": "Modular arithmetic", "prerequisites": ["dm-gcd"] }
+          ]
+        },
+        {
+          "id": "dm-structures", "name": "Sequences & graphs",
+          "subtopics": [
+            { "id": "dm-recurrences", "name": "Recurrence relations" },
+            { "id": "dm-graph-degree", "name": "Graphs: degrees & edges" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sat",
+      "name": "SAT Math",
+      "topics": [
+        {
+          "id": "sat-algebra", "name": "Algebra",
+          "subtopics": [
+            { "id": "sat-linear-equations", "name": "Linear equations" },
+            { "id": "sat-systems", "name": "Systems of linear equations", "prerequisites": ["sat-linear-equations"] },
+            { "id": "sat-quadratics", "name": "Quadratic equations", "prerequisites": ["sat-linear-equations"] }
+          ]
+        },
+        {
+          "id": "sat-problem-solving", "name": "Problem solving & data",
+          "subtopics": [
+            { "id": "sat-percentages", "name": "Percentages" },
+            { "id": "sat-ratios", "name": "Ratios & rates" }
+          ]
+        },
+        {
+          "id": "sat-geometry", "name": "Geometry",
+          "subtopics": [
+            { "id": "sat-triangles", "name": "Right triangles (Pythagorean theorem)" },
+            { "id": "sat-circles", "name": "Circle area & circumference" }
+          ]
+        }
+      ]
+    }
+  ]
+}

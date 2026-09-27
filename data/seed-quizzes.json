@@ -1,0 +1,82 @@
+[
+  {
+    "id": "diag-linear-algebra",
+    "title": "Diagnostic: Linear Algebra",
+    "description": "One question from each area of linear algebra. Different numbers every attempt.",
+    "timeLimitMinutes": 30,
+    "maxAttempts": 3,
+    "showResults": "full",
+    "feedback": "deferred",
+    "shuffleQuestions": false,
+    "items": [
+      { "kind": "pool", "topic": "la-vectors", "count": 2 },
+      { "kind": "pool", "topic": "la-matrices", "count": 1 },
+      { "kind": "pool", "topic": "la-determinants", "count": 2 },
+      { "kind": "pool", "topic": "la-systems", "count": 1 },
+      { "kind": "pool", "topic": "la-eigen", "count": 1 }
+    ]
+  },
+  {
+    "id": "calc-derivatives-check",
+    "title": "Calculus: Derivatives & Integrals Check",
+    "description": "Fixed core questions plus a random integral. One attempt; you will see your score but not the answers.",
+    "timeLimitMinutes": 25,
+    "maxAttempts": 1,
+    "showResults": "score",
+    "feedback": "deferred",
+    "shuffleQuestions": true,
+    "items": [
+      { "kind": "question", "questionId": "ca-power-001" },
+      { "kind": "question", "questionId": "ca-product-001" },
+      { "kind": "question", "questionId": "ca-chain-001" },
+      { "kind": "question", "questionId": "ca-tangent-001", "points": 2 },
+      { "kind": "pool", "topic": "ca-integrals", "count": 2 }
+    ]
+  },
+  {
+    "id": "sat-warmup",
+    "title": "SAT Math Warm-up",
+    "description": "Quick practice with instant feedback after each answer. Retake as often as you like.",
+    "timeLimitMinutes": 15,
+    "maxAttempts": 0,
+    "showResults": "full",
+    "feedback": "immediate",
+    "shuffleQuestions": true,
+    "items": [
+      { "kind": "pool", "subject": "sat", "count": 6 }
+    ]
+  },
+  {
+    "id": "prob-counting",
+    "title": "Probability & Counting",
+    "description": "Mixes probability with the combinatorics it depends on. Results are hidden (exam mode).",
+    "timeLimitMinutes": 30,
+    "maxAttempts": 2,
+    "showResults": "never",
+    "feedback": "deferred",
+    "shuffleQuestions": true,
+    "items": [
+      { "kind": "pool", "subject": "probability", "difficultyMax": 3, "count": 4 },
+      { "kind": "pool", "subject": "discrete-math", "topic": "dm-combinatorics", "count": 2 }
+    ]
+  },
+  {
+    "id": "placement-all",
+    "title": "Placement Test (all subjects)",
+    "description": "Two questions per subject — a broad diagnostic that seeds your knowledge profile.",
+    "timeLimitMinutes": 60,
+    "maxAttempts": 1,
+    "showResults": "full",
+    "feedback": "deferred",
+    "shuffleQuestions": false,
+    "items": [
+      { "kind": "pool", "subject": "sat", "count": 2 },
+      { "kind": "pool", "subject": "analytic-geometry", "count": 2 },
+      { "kind": "pool", "subject": "linear-algebra", "count": 2 },
+      { "kind": "pool", "subject": "calculus", "count": 2 },
+      { "kind": "pool", "subject": "differential-equations", "count": 2 },
+      { "kind": "pool", "subject": "probability", "count": 2 },
+      { "kind": "pool", "subject": "discrete-math", "count": 2 }
+    ]
+  }
+]

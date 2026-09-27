@@ -1,0 +1,4 @@
+node_modules/
+var/
+*.tmp
+.DS_Store

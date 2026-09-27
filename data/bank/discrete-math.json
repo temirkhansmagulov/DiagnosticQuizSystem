@@ -1,0 +1,148 @@
+{
+  "subject": "discrete-math",
+  "questions": [
+    {
+      "id": "dm-perm-001",
+      "title": "Arranging books",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "dm-permutations": 1 },
+      "text": "In how many ways can {{k}} of {{n}} different books be arranged in a row on a shelf?",
+      "variables": { "n": { "min": 5, "max": 10 }, "k": { "min": 2, "max": 4 } },
+      "answer": "P(n, k)",
+      "solution": "$P({{n}}, {{k}}) = \\frac{ {{n}}! }{ {{n-k}}! } = {{answer}}$"
+    },
+    {
+      "id": "dm-perm-002",
+      "title": "Seating with two people together",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "dm-permutations": 1 },
+      "text": "{{n}} people sit in a row. In how many ways can they be seated if two particular people must sit next to each other?",
+      "variables": { "n": { "min": 4, "max": 8 } },
+      "answer": "2 * fact(n - 1)",
+      "solution": "Glue the pair into one block: ${{n-1}}!$ arrangements, times $2$ orders inside the block $= {{answer}}$."
+    },
+    {
+      "id": "dm-comb-001",
+      "title": "Choosing a committee",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "dm-combinations": 1 },
+      "text": "How many different committees of {{k}} people can be chosen from {{n}} people?",
+      "variables": { "n": { "min": 6, "max": 15 }, "k": { "min": 2, "max": 5 } },
+      "answer": "C(n, k)",
+      "solution": "$\\binom{ {{n}} }{ {{k}} } = {{answer}}$"
+    },
+    {
+      "id": "dm-comb-002",
+      "title": "Mixed committee",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "dm-combinations": 1 },
+      "text": "A committee needs {{a}} men chosen from {{M}} and {{b}} women chosen from {{W}}. How many committees are possible?",
+      "variables": { "M": { "min": 5, "max": 9 }, "W": { "min": 5, "max": 9 }, "a": { "min": 2, "max": 3 }, "b": { "min": 2, "max": 3 } },
+      "answer": "C(M, a) * C(W, b)",
+      "distractors": ["C(M + W, a + b)", "C(M, a) + C(W, b)", "P(M, a) * P(W, b)"],
+      "solution": "Choose independently and multiply: $\\binom{ {{M}} }{ {{a}} }\\binom{ {{W}} }{ {{b}} } = {{answer}}$"
+    },
+    {
+      "id": "dm-ie-001",
+      "title": "Divisible by p or q",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "dm-inclusion-exclusion": 1 },
+      "text": "How many integers from 1 to {{N}} are divisible by {{p}} or by {{q}}?",
+      "variables": { "N": { "min": 100, "max": 1000, "step": 50 }, "p": { "choices": [2, 3, 5, 7] }, "q": { "choices": [3, 5, 7, 11] } },
+      "constraints": ["p < q"],
+      "answer": "floor(N/p) + floor(N/q) - floor(N/(p*q))",
+      "solution": "$\\lfloor {{N}}/{{p}} \\rfloor + \\lfloor {{N}}/{{q}} \\rfloor - \\lfloor {{N}}/{{p*q}} \\rfloor = {{floor(N/p)}} + {{floor(N/q)}} - {{floor(N/(p*q))}} = {{answer}}$"
+    },
+    {
+      "id": "dm-gcd-001",
+      "title": "Greatest common divisor",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "dm-gcd": 1 },
+      "text": "Find $\\gcd({{a}}, {{b}})$.",
+      "variables": { "g": { "choices": [2, 3, 4, 6, 7, 8, 9, 12, 15] }, "x": { "min": 2, "max": 20 }, "y": { "min": 2, "max": 20 } },
+      "derived": { "a": "g*x", "b": "g*y" },
+      "constraints": ["x != y"],
+      "answer": "gcd(a, b)",
+      "solution": "Using the Euclidean algorithm, $\\gcd({{a}}, {{b}}) = {{answer}}$."
+    },
+    {
+      "id": "dm-gcd-002",
+      "title": "Least common multiple",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "dm-gcd": 1 },
+      "text": "What is $\\operatorname{lcm}({{a}}, {{b}})$?",
+      "variables": { "a": { "min": 4, "max": 30 }, "b": { "min": 4, "max": 30 } },
+      "constraints": ["a != b", "gcd(a, b) > 1", "gcd(a, b) < min(a, b)"],
+      "answer": "lcm(a, b)",
+      "distractors": ["a*b", "gcd(a, b)", "a*b/2"],
+      "solution": "$\\operatorname{lcm}(a,b) = \\frac{ab}{\\gcd(a,b)} = \\frac{ {{a*b}} }{ {{gcd(a,b)}} } = {{answer}}$"
+    },
+    {
+      "id": "dm-mod-001",
+      "title": "Modular exponentiation",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "dm-modular": 1 },
+      "text": "Find the remainder when ${{a}}^{ {{k}} }$ is divided by ${{m}}$.",
+      "variables": { "a": { "min": 2, "max": 9 }, "k": { "min": 10, "max": 60 }, "m": { "choices": [5, 7, 11, 13] } },
+      "constraints": ["a % m != 0"],
+      "answer": "powmod(a, k, m)",
+      "solution": "Use repeated squaring (or Fermat's little theorem, since ${{m}}$ is prime): ${{a}}^{ {{k}} } \\equiv {{answer}} \\pmod{ {{m}} }$."
+    },
+    {
+      "id": "dm-mod-002",
+      "title": "Linear congruence",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "dm-modular": 1, "dm-gcd": 0.3 },
+      "text": "Find the smallest positive integer $x$ with ${{a}}x \\equiv {{b}} \\pmod{ {{m}} }$.",
+      "variables": { "m": { "choices": [7, 11, 13, 17] }, "a": { "min": 2, "max": 6 }, "x0": { "min": 1, "max": 16 } },
+      "derived": { "b": "mod(a*x0, m)" },
+      "constraints": ["x0 < m"],
+      "answer": "x0",
+      "solution": "Multiply by the inverse of ${{a}}$ modulo ${{m}}$; check: ${{a}}\\cdot{{x0}} = {{a*x0}} \\equiv {{b}}$."
+    },
+    {
+      "id": "dm-rec-001",
+      "title": "Linear recurrence",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "dm-recurrences": 1 },
+      "text": "A sequence satisfies $a_0 = {{s}}$ and $a_n = {{r}}a_{n-1} {{d|signed}}$ for $n \\ge 1$. Find $a_{ {{k}} }$.",
+      "variables": { "r": { "min": 2, "max": 3 }, "d": { "min": -3, "max": 3, "exclude": [0] }, "s": { "min": 1, "max": 5 }, "k": { "min": 3, "max": 6 } },
+      "answer": "r^k*s + d*(r^k - 1)/(r - 1)",
+      "solution": "Iterate the recurrence (or use $a_k = r^k a_0 + d\\frac{r^k - 1}{r - 1}$) to get ${{answer}}$."
+    },
+    {
+      "id": "dm-graph-001",
+      "title": "Handshake lemma",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "dm-graph-degree": 1 },
+      "text": "A simple graph has {{n}} vertices, each of degree {{d}}. How many edges does it have?",
+      "variables": { "n": { "min": 4, "max": 20 }, "d": { "min": 2, "max": 7 } },
+      "constraints": ["d < n", "(n*d) % 2 == 0"],
+      "answer": "n*d/2",
+      "solution": "Sum of degrees $= 2|E|$: $|E| = {{n}}\\cdot{{d}}/2 = {{answer}}$."
+    },
+    {
+      "id": "dm-graph-002",
+      "title": "Edges of a complete graph",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "dm-graph-degree": 1, "dm-combinations": 0.3 },
+      "text": "How many edges does the complete graph $K_{ {{n}} }$ have?",
+      "variables": { "n": { "min": 5, "max": 15 } },
+      "answer": "n*(n - 1)/2",
+      "distractors": ["n*(n - 1)", "n^2", "n - 1"],
+      "solution": "Each pair of vertices is joined once: $\\binom{ {{n}} }{2} = {{answer}}$."
+    }
+  ]
+}

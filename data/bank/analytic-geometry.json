@@ -1,0 +1,119 @@
+{
+  "subject": "analytic-geometry",
+  "questions": [
+    {
+      "id": "ag-slope-001",
+      "title": "Slope through two points",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "ag-slope": 1 },
+      "text": "Find the slope of the line through $({{x1}}, {{y1}})$ and $({{x2}}, {{y2}})$.",
+      "variables": { "x1": { "min": -8, "max": 8 }, "y1": { "min": -8, "max": 8 }, "x2": { "min": -8, "max": 8 }, "y2": { "min": -8, "max": 8 } },
+      "constraints": ["x1 != x2"],
+      "answer": "(y2 - y1) / (x2 - x1)",
+      "tolerance": { "abs": 0.001 },
+      "inputHint": "A fraction like -3/4 or a decimal.",
+      "answerDisplay": "${{answer|frac}}$",
+      "solution": "$m = \\frac{ {{y2}} - ({{y1}}) }{ {{x2}} - ({{x1}}) } = {{answer|frac}}$"
+    },
+    {
+      "id": "ag-line-001",
+      "title": "Point-slope to slope-intercept",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "ag-line-equation": 1, "ag-slope": 0.4 },
+      "text": "Which equation describes the line with slope ${{m}}$ passing through $({{x1}}, {{y1}})$?",
+      "variables": { "m": { "min": -4, "max": 4, "exclude": [0] }, "x1": { "min": -5, "max": 5, "exclude": [0] }, "y1": { "min": -9, "max": 9 } },
+      "constraints": ["y1 - m*x1 != 0"],
+      "answer": "y1 - m*x1",
+      "distractors": ["y1 + m*x1", "x1 - m*y1", "y1 - m"],
+      "optionTemplate": "$y = {{m|coef}}x {{value|signed}}$",
+      "solution": "$b = y_1 - m x_1 = {{y1}} - ({{m}})({{x1}}) = {{answer}}$"
+    },
+    {
+      "id": "ag-distance-001",
+      "title": "Distance between two points",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "ag-distance-points": 1, "sat-triangles": 0.4 },
+      "text": "Find the distance between $({{x1}}, {{y1}})$ and $({{x2}}, {{y2}})$.",
+      "variables": { "x1": { "min": -8, "max": 8 }, "y1": { "min": -8, "max": 8 }, "x2": { "min": -8, "max": 8 }, "y2": { "min": -8, "max": 8 } },
+      "constraints": ["x1 != x2 || y1 != y2"],
+      "answer": "sqrt((x2 - x1)^2 + (y2 - y1)^2)",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to 2 decimals, or enter sqrt(...).",
+      "solution": "$d = \\sqrt{ {{(x2-x1)^2}} + {{(y2-y1)^2}} } \\approx {{answer|3}}$"
+    },
+    {
+      "id": "ag-point-line-001",
+      "title": "Distance from a point to a line",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "ag-distance-point-line": 1, "ag-line-equation": 0.3 },
+      "text": "Find the distance from the point $({{x0}}, {{y0}})$ to the line ${{a|coef}}x {{b|signedcoef}}y {{c|signed}} = 0$.",
+      "variables": {
+        "a": { "min": -6, "max": 6, "exclude": [0] }, "b": { "min": -6, "max": 6, "exclude": [0] }, "c": { "min": -10, "max": 10, "exclude": [0] },
+        "x0": { "min": -5, "max": 5 }, "y0": { "min": -5, "max": 5 }
+      },
+      "answer": "abs(a*x0 + b*y0 + c) / sqrt(a^2 + b^2)",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to 2 decimals.",
+      "solution": "$d = \\frac{|({{a}})({{x0}}) + ({{b}})({{y0}}) + ({{c}})|}{\\sqrt{ {{a^2+b^2}} }} \\approx {{answer|3}}$"
+    },
+    {
+      "id": "ag-circle-001",
+      "title": "Radius from general form",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "ag-circle": 1, "sat-quadratics": 0.3 },
+      "text": "Find the radius of the circle $x^2 + y^2 {{D|signedcoef}}x {{E|signedcoef}}y {{F|signed}} = 0$.",
+      "variables": { "h": { "min": -6, "max": 6, "exclude": [0] }, "k": { "min": -6, "max": 6, "exclude": [0] }, "r": { "min": 1, "max": 9 } },
+      "derived": { "D": "-2*h", "E": "-2*k", "F": "h^2 + k^2 - r^2" },
+      "constraints": ["F != 0"],
+      "answer": "r",
+      "solution": "Complete the square: $(x {{-h|signed}})^2 + (y {{-k|signed}})^2 = {{r^2}}$, so $r = {{r}}$."
+    },
+    {
+      "id": "ag-circle-002",
+      "title": "Center of a circle",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "ag-circle": 1 },
+      "text": "What is the center of the circle $(x {{-h|signed}})^2 + (y {{-k|signed}})^2 = {{r^2}}$?",
+      "variables": { "h": { "min": -7, "max": 7, "exclude": [0] }, "k": { "min": -7, "max": 7, "exclude": [0] }, "r": { "min": 1, "max": 9 } },
+      "constraints": ["h != k", "h != -k"],
+      "choices": [
+        { "text": "$({{h}}, {{k}})$", "correct": true },
+        { "text": "$({{-h}}, {{-k}})$" },
+        { "text": "$({{k}}, {{h}})$" },
+        { "text": "$({{h}}, {{-k}})$" }
+      ]
+    },
+    {
+      "id": "ag-parabola-001",
+      "title": "Vertex of a parabola",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "ag-parabola": 1, "sat-quadratics": 0.4 },
+      "text": "What is the $y$-coordinate of the vertex of $y = {{a|coef}}x^2 {{b|signedcoef}}x {{c|signed}}$?",
+      "variables": { "a": { "min": -3, "max": 3, "exclude": [0] }, "h": { "min": -4, "max": 4, "exclude": [0] }, "c": { "min": -9, "max": 9 } },
+      "derived": { "b": "-2*a*h" },
+      "answer": "c - a*h^2",
+      "solution": "Vertex at $x = -\\frac{b}{2a} = {{h}}$; $y = {{a}}({{h}})^2 {{b|signed}}({{h}}) {{c|signed}} = {{answer}}$."
+    },
+    {
+      "id": "ag-ellipse-001",
+      "title": "Distance between foci",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "ag-ellipse": 1 },
+      "text": "Find the distance between the foci of the ellipse $\\dfrac{x^2}{ {{a^2}} } + \\dfrac{y^2}{ {{b^2}} } = 1$.",
+      "variables": { "a": { "min": 3, "max": 9 }, "b": { "min": 1, "max": 8 } },
+      "constraints": ["b < a"],
+      "answer": "2*sqrt(a^2 - b^2)",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to 2 decimals, or enter 2sqrt(...).",
+      "solution": "$c = \\sqrt{a^2 - b^2} = \\sqrt{ {{a^2-b^2}} }$, and the foci are $2c \\approx {{answer|3}}$ apart."
+    }
+  ]
+}

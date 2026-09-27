@@ -1,0 +1,153 @@
+{
+  "subject": "sat",
+  "questions": [
+    {
+      "id": "sat-linear-001",
+      "title": "Solve a linear equation",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "sat-linear-equations": 1 },
+      "text": "Solve for $x$: ${{a|coef}}x {{b|signed}} = {{c|coef}}x {{d|signed}}$.",
+      "variables": { "a": { "min": -9, "max": 9, "exclude": [0] }, "c": { "min": -9, "max": 9, "exclude": [0] }, "b": { "min": -15, "max": 15, "exclude": [0] }, "x0": { "min": -8, "max": 8 } },
+      "derived": { "d": "a*x0 + b - c*x0" },
+      "constraints": ["a != c", "d != 0"],
+      "answer": "x0",
+      "solution": "$({{a}} - ({{c}}))x = {{d}} - ({{b}})$, so $x = {{answer}}$."
+    },
+    {
+      "id": "sat-linear-002",
+      "title": "Plumber's bill",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "sat-linear-equations": 1 },
+      "text": "A plumber charges a flat fee of {{F}} dollars plus {{R}} dollars per hour. A bill came to {{T}} dollars. How many hours did the plumber work?",
+      "variables": { "F": { "min": 40, "max": 120, "step": 5 }, "R": { "min": 30, "max": 90, "step": 5 }, "h": { "min": 1, "max": 9 } },
+      "derived": { "T": "F + R*h" },
+      "answer": "h",
+      "solution": "${{F}} + {{R}}h = {{T}} \\Rightarrow h = {{answer}}$"
+    },
+    {
+      "id": "sat-systems-001",
+      "title": "System of two equations",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "sat-systems": 1, "sat-linear-equations": 0.3 },
+      "text": "If $$\\begin{cases} {{a|coef}}x {{b|signedcoef}}y = {{r1}} \\\\ {{c|coef}}x {{d|signedcoef}}y = {{r2}} \\end{cases}$$ what is the value of $x + y$?",
+      "variables": {
+        "a": { "min": -5, "max": 5, "exclude": [0] }, "b": { "min": -5, "max": 5, "exclude": [0] },
+        "c": { "min": -5, "max": 5, "exclude": [0] }, "d": { "min": -5, "max": 5, "exclude": [0] },
+        "x0": { "min": -6, "max": 6 }, "y0": { "min": -6, "max": 6 }
+      },
+      "derived": { "r1": "a*x0 + b*y0", "r2": "c*x0 + d*y0" },
+      "constraints": ["a*d - b*c != 0"],
+      "answer": "x0 + y0",
+      "solution": "Solving gives $x = {{x0}}$, $y = {{y0}}$, so $x + y = {{answer}}$."
+    },
+    {
+      "id": "sat-quadratic-001",
+      "title": "Larger root of a quadratic",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "sat-quadratics": 1 },
+      "text": "What is the larger solution of $x^2 {{p|signedcoef}}x {{q|signed}} = 0$?",
+      "variables": { "r1": { "min": -9, "max": 9, "exclude": [0] }, "r2": { "min": -9, "max": 9, "exclude": [0] } },
+      "derived": { "p": "-(r1 + r2)", "q": "r1*r2" },
+      "constraints": ["r1 < r2", "p != 0"],
+      "answer": "r2",
+      "distractors": ["-r2", "r1", "-r1"],
+      "solution": "Factor: $(x {{-r1|signed}})(x {{-r2|signed}}) = 0$, solutions ${{r1}}$ and ${{r2}}$."
+    },
+    {
+      "id": "sat-quadratic-002",
+      "title": "Exactly one solution",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "sat-quadratics": 1 },
+      "text": "For what value of $c$ does $x^2 {{b|signedcoef}}x + c = 0$ have exactly one real solution?",
+      "variables": { "b": { "min": -12, "max": 12, "step": 2, "exclude": [0] } },
+      "answer": "b^2/4",
+      "solution": "One solution when the discriminant $b^2 - 4c = 0$: $c = {{b^2}}/4 = {{answer}}$."
+    },
+    {
+      "id": "sat-percent-001",
+      "title": "Successive percent changes",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "sat-percentages": 1 },
+      "text": "A price of {{P}} dollars is increased by {{a}}% and then the new price is decreased by {{b}}%. What is the final price in dollars?",
+      "variables": { "P": { "min": 40, "max": 400, "step": 20 }, "a": { "min": 10, "max": 50, "step": 5 }, "b": { "min": 10, "max": 50, "step": 5 } },
+      "answer": "P * (1 + a/100) * (1 - b/100)",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to the nearest cent.",
+      "solution": "${{P}} \\times {{1 + a/100}} \\times {{1 - b/100}} = {{answer|2}}$"
+    },
+    {
+      "id": "sat-percent-002",
+      "title": "Original price before discount",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "sat-percentages": 1, "sat-linear-equations": 0.3 },
+      "text": "After a {{d}}% discount, a jacket costs {{S}} dollars. What was the original price in dollars?",
+      "variables": { "d": { "choices": [10, 20, 25, 30, 40, 50] }, "O": { "min": 40, "max": 200, "step": 4 } },
+      "derived": { "S": "O * (1 - d/100)" },
+      "answer": "O",
+      "tolerance": { "abs": 0.01 },
+      "solution": "${{S}} = (1 - {{d/100}})\\,x \\Rightarrow x = {{answer}}$"
+    },
+    {
+      "id": "sat-ratio-001",
+      "title": "Scaling a recipe",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "sat-ratios": 1 },
+      "text": "A recipe uses flour and sugar in the ratio {{a}} : {{b}}. How many cups of sugar are needed with {{F}} cups of flour?",
+      "variables": { "a": { "min": 2, "max": 7 }, "b": { "min": 1, "max": 5 }, "m": { "min": 2, "max": 6 } },
+      "derived": { "F": "a*m" },
+      "constraints": ["a != b"],
+      "answer": "b*m",
+      "solution": "$\\frac{ {{b}} }{ {{a}} } \\times {{F}} = {{answer}}$"
+    },
+    {
+      "id": "sat-ratio-002",
+      "title": "Constant rate",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "sat-ratios": 1 },
+      "text": "A train travels {{D}} miles in {{T}} hours. At the same rate, how many miles does it travel in {{T2}} hours?",
+      "variables": { "s": { "min": 40, "max": 90, "step": 5 }, "T": { "min": 2, "max": 5 }, "T2": { "min": 3, "max": 9 } },
+      "derived": { "D": "s*T" },
+      "constraints": ["T != T2"],
+      "answer": "s*T2",
+      "solution": "Rate $= {{D}}/{{T}} = {{s}}$ mph, so ${{s}} \\times {{T2}} = {{answer}}$ miles."
+    },
+    {
+      "id": "sat-triangle-001",
+      "title": "Hypotenuse",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "sat-triangles": 1 },
+      "text": "A right triangle has legs of length {{p}} and {{q}}. What is the length of the hypotenuse?",
+      "variables": { "t": { "choices": [0, 1, 2, 3] }, "k": { "min": 1, "max": 4 } },
+      "derived": {
+        "p": "k * (t == 0 ? 3 : t == 1 ? 5 : t == 2 ? 8 : 7)",
+        "q": "k * (t == 0 ? 4 : t == 1 ? 12 : t == 2 ? 15 : 24)"
+      },
+      "answer": "sqrt(p^2 + q^2)",
+      "tolerance": { "abs": 0.001 },
+      "solution": "$c = \\sqrt{ {{p^2}} + {{q^2}} } = {{answer}}$"
+    },
+    {
+      "id": "sat-circle-001",
+      "title": "Circumference from area",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "sat-circles": 1 },
+      "text": "A circle has area ${{r^2}}\\pi$. What is its circumference?",
+      "variables": { "r": { "min": 3, "max": 12 } },
+      "answer": "2*r",
+      "distractors": ["r", "r^2", "4*r"],
+      "optionTemplate": "${{value}}\\pi$",
+      "solution": "$\\pi r^2 = {{r^2}}\\pi \\Rightarrow r = {{r}}$, so $C = 2\\pi r = {{answer}}\\pi$."
+    }
+  ]
+}

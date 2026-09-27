@@ -1,0 +1,165 @@
+{
+  "subject": "calculus",
+  "questions": [
+    {
+      "id": "ca-limit-001",
+      "title": "Removable discontinuity limit",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "ca-limits-rational": 1, "sat-quadratics": 0.4 },
+      "text": "Evaluate $\\displaystyle \\lim_{x \\to {{a}}} \\frac{x^2 {{b - a|signedcoef}}x {{-a*b|signed}}}{x {{-a|signed}}}$.",
+      "variables": { "a": { "min": -6, "max": 6, "exclude": [0] }, "b": { "min": -6, "max": 6, "exclude": [0] } },
+      "constraints": ["b != a", "b != -a"],
+      "answer": "a + b",
+      "solution": "Factor: $\\frac{(x {{-a|signed}})(x {{b|signed}})}{x {{-a|signed}}} = x {{b|signed}} \\to {{answer}}$."
+    },
+    {
+      "id": "ca-limit-002",
+      "title": "Limit at infinity of a rational function",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "ca-limits-infinity": 1 },
+      "text": "Evaluate $\\displaystyle \\lim_{x \\to \\infty} \\frac{ {{a|coef}}x^2 {{b|signedcoef}}x + 1}{ {{c}}x^2 {{d|signed}} }$.",
+      "variables": {
+        "a": { "min": 1, "max": 9 }, "b": { "min": -9, "max": 9, "exclude": [0] },
+        "c": { "min": 2, "max": 9 }, "d": { "min": -9, "max": 9, "exclude": [0] }
+      },
+      "constraints": ["a != c", "b != d"],
+      "answer": "a / c",
+      "distractors": ["c / a", "0", "b / d"],
+      "optionTemplate": "${{value|frac}}$",
+      "solution": "Divide numerator and denominator by $x^2$: the limit is the ratio of leading coefficients, ${{answer|frac}}$."
+    },
+    {
+      "id": "ca-power-001",
+      "title": "Power rule at a point",
+      "type": "numeric",
+      "difficulty": 1,
+      "subtopics": { "ca-power-rule": 1 },
+      "text": "Let $f(x) = {{a|coef}}x^{{{n}}} {{b|signedcoef}}x {{c|signed}}$. Find $f'({{x0}})$.",
+      "variables": {
+        "a": { "min": -5, "max": 5, "exclude": [0] }, "n": { "min": 2, "max": 5 },
+        "b": { "min": -9, "max": 9, "exclude": [0] }, "c": { "min": -9, "max": 9 },
+        "x0": { "min": -3, "max": 3 }
+      },
+      "answer": "a*n*x0^(n - 1) + b",
+      "solution": "$f'(x) = {{a*n}}x^{ {{n-1}} } {{b|signed}}$, so $f'({{x0}}) = {{answer}}$."
+    },
+    {
+      "id": "ca-product-001",
+      "title": "Product rule at a point",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "ca-product-rule": 1, "ca-power-rule": 0.3 },
+      "text": "Let $f(x) = ({{a|coef}}x {{b|signed}})({{c|coef}}x^2 {{d|signed}})$. Find $f'({{x0}})$.",
+      "variables": {
+        "a": { "min": -4, "max": 4, "exclude": [0] }, "b": { "min": -5, "max": 5, "exclude": [0] },
+        "c": { "min": -4, "max": 4, "exclude": [0] }, "d": { "min": -5, "max": 5, "exclude": [0] },
+        "x0": { "min": -3, "max": 3 }
+      },
+      "answer": "a*(c*x0^2 + d) + (a*x0 + b)*(2*c*x0)",
+      "solution": "$f' = {{a}}({{c}}x^2 {{d|signed}}) + ({{a}}x {{b|signed}})({{2*c}}x)$; at $x={{x0}}$: ${{answer}}$."
+    },
+    {
+      "id": "ca-chain-001",
+      "title": "Chain rule at a point",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "ca-chain-rule": 1, "ca-power-rule": 0.3 },
+      "text": "Let $f(x) = ({{a|coef}}x {{b|signed}})^{{{n}}}$. Find $f'({{x0}})$.",
+      "variables": {
+        "a": { "min": 1, "max": 3 }, "b": { "min": -3, "max": 3, "exclude": [0] },
+        "n": { "min": 2, "max": 4 }, "x0": { "min": -2, "max": 2 }
+      },
+      "answer": "n*a*(a*x0 + b)^(n - 1)",
+      "solution": "$f'(x) = {{n}}({{a|coef}}x {{b|signed}})^{ {{n-1}} }\\cdot {{a}}$; at $x = {{x0}}$ this is ${{answer}}$."
+    },
+    {
+      "id": "ca-chain-002",
+      "title": "Derivative of sin(kx^2)",
+      "type": "mcq",
+      "difficulty": 2,
+      "subtopics": { "ca-chain-rule": 1 },
+      "text": "What is $\\dfrac{d}{dx}\\sin({{k}}x^2)$?",
+      "variables": { "k": { "min": 2, "max": 9 } },
+      "choices": [
+        { "text": "${{2*k}}x\\cos({{k}}x^2)$", "correct": true },
+        { "text": "$\\cos({{k}}x^2)$" },
+        { "text": "$-{{2*k}}x\\cos({{k}}x^2)$" },
+        { "text": "${{2*k}}x\\sin({{k}}x^2)$" }
+      ],
+      "solution": "Outer derivative $\\cos(u)$ times inner derivative $u' = {{2*k}}x$."
+    },
+    {
+      "id": "ca-tangent-001",
+      "title": "y-intercept of a tangent line",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "ca-tangent-line": 1, "ca-power-rule": 0.5, "ag-line-equation": 0.4 },
+      "text": "Find the $y$-intercept of the line tangent to $f(x) = x^2 {{b|signedcoef}}x {{c|signed}}$ at $x = {{x0}}$.",
+      "variables": {
+        "b": { "min": -6, "max": 6, "exclude": [0] }, "c": { "min": -9, "max": 9, "exclude": [0] },
+        "x0": { "min": -4, "max": 4, "exclude": [0] }
+      },
+      "answer": "c - x0^2",
+      "solution": "Slope $m = 2({{x0}}) {{b|signed}} = {{2*x0+b}}$, point $({{x0}}, {{x0^2+b*x0+c}})$. Intercept $= {{x0^2+b*x0+c}} - ({{2*x0+b}})({{x0}}) = {{answer}}$."
+    },
+    {
+      "id": "ca-critical-001",
+      "title": "Local minimum of a cubic",
+      "type": "numeric",
+      "difficulty": 3,
+      "subtopics": { "ca-critical-points": 1, "ca-power-rule": 0.4, "sat-quadratics": 0.3 },
+      "text": "At what value of $x$ does $f(x) = x^3 {{A|signedcoef}}x^2 {{B|signedcoef}}x$ have a local minimum?",
+      "variables": { "r1": { "min": -5, "max": 5 }, "r2": { "min": -5, "max": 5 } },
+      "derived": { "A": "-3*(r1 + r2)/2", "B": "3*r1*r2" },
+      "constraints": ["r1 < r2", "(r1 + r2) % 2 == 0", "A != 0", "B != 0"],
+      "answer": "r2",
+      "solution": "$f'(x) = 3x^2 {{2*A|signedcoef}}x {{B|signed}} = 3(x {{-r1|signed}})(x {{-r2|signed}})$. $f'$ changes from $-$ to $+$ at $x = {{answer}}$."
+    },
+    {
+      "id": "ca-integral-001",
+      "title": "Definite integral of a polynomial",
+      "type": "numeric",
+      "difficulty": 2,
+      "subtopics": { "ca-definite-integral": 1, "ca-power-rule": 0.3 },
+      "text": "Evaluate $\\displaystyle \\int_0^{{{b}}} \\left({{a}}x^2 {{c|signed}}\\right)\\,dx$.",
+      "variables": { "a": { "min": 1, "max": 6 }, "c": { "min": -5, "max": 5, "exclude": [0] }, "b": { "min": 1, "max": 4 } },
+      "answer": "a*b^3/3 + c*b",
+      "tolerance": { "abs": 0.01 },
+      "inputHint": "Round to 2 decimals or enter a fraction.",
+      "answerDisplay": "${{answer|frac}}$",
+      "solution": "$\\left[\\tfrac{ {{a}} }{3}x^3 {{c|signedcoef}}x\\right]_0^{ {{b}} } = {{answer|frac}}$"
+    },
+    {
+      "id": "ca-usub-001",
+      "title": "Definite integral by substitution",
+      "type": "numeric",
+      "difficulty": 4,
+      "subtopics": { "ca-u-substitution": 1, "ca-chain-rule": 0.4, "ca-definite-integral": 0.4 },
+      "text": "Evaluate $\\displaystyle \\int_0^{{{b}}} 2x\\,(x^2 + {{c}})^{{{n}}}\\,dx$.",
+      "variables": { "b": { "min": 1, "max": 3 }, "c": { "min": 1, "max": 3 }, "n": { "min": 1, "max": 2 } },
+      "answer": "((b^2 + c)^(n + 1) - c^(n + 1)) / (n + 1)",
+      "tolerance": { "rel": 0.001 },
+      "inputHint": "Exact value or rounded to 2 decimals.",
+      "answerDisplay": "${{answer|frac}}$",
+      "solution": "Let $u = x^2 + {{c}}$, $du = 2x\\,dx$: $\\int_{ {{c}} }^{ {{b^2+c}} } u^{ {{n}} }\\,du = \\frac{ {{b^2+c}}^{ {{n+1}} } - {{c}}^{ {{n+1}} } }{ {{n+1}} } = {{answer|frac}}$"
+    },
+    {
+      "id": "ca-usub-002",
+      "title": "Choosing a substitution",
+      "type": "mcq",
+      "difficulty": 1,
+      "subtopics": { "ca-u-substitution": 1 },
+      "text": "Which substitution turns $\\displaystyle\\int {{k}}x\\,e^{x^2}\\,dx$ into an elementary integral?",
+      "variables": { "k": { "min": 2, "max": 9 } },
+      "choices": [
+        { "text": "$u = x^2$", "correct": true },
+        { "text": "$u = e^x$" },
+        { "text": "$u = {{k}}x$" },
+        { "text": "$u = x e^{x}$" }
+      ],
+      "solution": "With $u = x^2$, $du = 2x\\,dx$ and the integral becomes $\\tfrac{ {{k}} }{2}\\int e^u\\,du$."
+    }
+  ]
+}
